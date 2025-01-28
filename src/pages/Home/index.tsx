@@ -1,13 +1,14 @@
 import { Clock, Coffee, Package, ShoppingCart } from 'phosphor-react';
 import heroBackground from '../../assets/hero-background.png';
 import heroCoffee from '../../assets/hero-coffee.png';
+import { CoffeeListData } from '../../utils';
 import { BenefitItem } from './components/BenefitItem';
-import { HomeContainer } from "./styles";
+import { CoffeeList, HeroSection, HomeContainer } from "./styles";
 
 export function Home() {
     return (
         <HomeContainer>
-            <section className="hero-section">
+            <HeroSection>
                 <img src={heroBackground} className='background' />
                 <div className="hero-section__caption">
                     <h1>Encontre o café perfeito para qualquer hora do dia</h1>
@@ -22,7 +23,21 @@ export function Home() {
                 <div className="hero-section__image">
                     <img src={heroCoffee} alt="Copo de café" />
                 </div>
-            </section>
+            </HeroSection>
+
+            <CoffeeList>
+                <h2>Nossos cafés</h2>
+                <ul>
+                    {CoffeeListData.map((coffee) => {
+                        return (
+                            <div>
+                                <img src={coffee.imagePath} alt="" />
+                                <p>{coffee.coffeeName}</p>
+                            </div>
+                        )
+                    })}
+                </ul>
+            </CoffeeList>
         </HomeContainer>
     )
 }

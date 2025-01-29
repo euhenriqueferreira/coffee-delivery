@@ -18,7 +18,7 @@ export const HeroSection = styled.section`
 
     img.background{
         width: 100%;
-        height: 100%;
+        height: fit-content;
         object-fit: cover;
 
         position: absolute;
@@ -62,7 +62,7 @@ export const HeroSection = styled.section`
 export const CoffeeList = styled.section`
     width: 100%;
     max-width: 1120px;
-    margin: 0 auto;
+    margin: 0 auto 10rem auto;
 
     h2{
         font-size: 2rem;

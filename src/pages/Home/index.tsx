@@ -1,11 +1,15 @@
 import { Clock, Coffee, Package, ShoppingCart } from 'phosphor-react';
+import { useContext } from 'react';
 import heroBackground from '../../assets/hero-background.png';
 import heroCoffee from '../../assets/hero-coffee.png';
-import { CoffeeListData } from '../../utils';
+import { CoffeesContext } from '../../contexts/CoffeesContext';
 import { BenefitItem } from './components/BenefitItem';
+import { CoffeeItem } from './components/CoffeeItem';
 import { CoffeeList, HeroSection, HomeContainer } from "./styles";
 
 export function Home() {
+    const { coffees } = useContext(CoffeesContext)
+
     return (
         <HomeContainer>
             <HeroSection>
@@ -28,12 +32,9 @@ export function Home() {
             <CoffeeList>
                 <h2>Nossos cafés</h2>
                 <ul>
-                    {CoffeeListData.map((coffee) => {
+                    {coffees.map((coffee) => {
                         return (
-                            <div>
-                                <img src={coffee.imagePath} alt="" />
-                                <p>{coffee.coffeeName}</p>
-                            </div>
+                            <CoffeeItem coffee={coffee} />
                         )
                     })}
                 </ul>

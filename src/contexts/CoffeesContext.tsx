@@ -6,7 +6,7 @@ interface CoffeeTrait {
     title: string
 }
 
-interface Coffee {
+export interface Coffee {
     id: number,
     imagePath: string,
     coffeeName: string,

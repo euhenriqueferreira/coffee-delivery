@@ -34,7 +34,7 @@ export function Home() {
                 <ul>
                     {coffees.map((coffee) => {
                         return (
-                            <CoffeeItem coffee={coffee} />
+                            <CoffeeItem key={coffee.id} coffee={coffee} />
                         )
                     })}
                 </ul>

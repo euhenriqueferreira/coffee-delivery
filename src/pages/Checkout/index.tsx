@@ -37,10 +37,9 @@ export function Checkout() {
 
         setUserAddressData(userAdressData)
 
-        reset()
-
         if (paymentMethod) {
-            navigate('/thanks')
+            reset()
+            navigate('/success')
         }
     }
 

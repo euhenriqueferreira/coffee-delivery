@@ -1,5 +1,5 @@
 import { Minus, Plus, ShoppingCart, Trash } from "phosphor-react"
-import { useContext, useState } from "react"
+import { Dispatch, SetStateAction, useContext, useState } from "react"
 import { Coffee, CoffeesContext } from "../../contexts/CoffeesContext"
 
 import { CoffeeItemCart, CoffeeItemContainer } from "./styles"
@@ -8,28 +8,60 @@ import { CoffeeItemCart, CoffeeItemContainer } from "./styles"
 interface CoffeeItemProps {
     coffee: Coffee,
     isItOnShoppingCart?: boolean,
+    somePriceHasChanged?: boolean,
+    setSomePriceHasChanged?: Dispatch<SetStateAction<boolean>>
 }
 
-export function CoffeeItem({ coffee, isItOnShoppingCart }: CoffeeItemProps) {
-    const [coffeeQuantity, setCoffeeQuantity] = useState<number>(coffee.coffeeQuantity)
-
+export function CoffeeItem({ coffee, isItOnShoppingCart, somePriceHasChanged, setSomePriceHasChanged }: CoffeeItemProps) {
     const { coffeesInCart, setCoffeesInCart, formatPrice } = useContext(CoffeesContext)
 
     const thisCoffee: Coffee = coffee
 
+    const coffeeInCart = coffeesInCart.find(item => item.id === thisCoffee.id)
+
+    const [coffeeQuantity, setCoffeeQuantity] = useState<number>(coffeeInCart ? coffeeInCart.coffeeQuantity : thisCoffee.coffeeQuantity)
+
     const currentCoffeePrice = thisCoffee.coffeePrice * coffeeQuantity
     const priceFormatted = formatPrice(currentCoffeePrice)
 
-    function handleCounterSum() { setCoffeeQuantity(state => state + 1) }
+    function handleCounterSum() {
+        setCoffeesInCart(state =>
+            state.map(item =>
+                item.id === thisCoffee.id ? { ...item, coffeeQuantity: item.coffeeQuantity + 1 } : item
+            )
+        )
+        setCoffeeQuantity(state => state + 1)
+        if (setSomePriceHasChanged) { setSomePriceHasChanged(!somePriceHasChanged) }
+    }
+
     function handleCounterSub() {
         if (coffeeQuantity > 1) {
+
+            setCoffeesInCart(state =>
+                state.map(item =>
+                    item.id === thisCoffee.id ? { ...item, coffeeQuantity: item.coffeeQuantity - 1 } : item
+                )
+            )
             setCoffeeQuantity(state => state - 1)
+
+            if (setSomePriceHasChanged) { setSomePriceHasChanged(!somePriceHasChanged) }
         }
     }
 
     function handleAddCoffeeToCart() {
-        const coffeeWithQuantity = { ...thisCoffee, coffeeQuantity: coffeeQuantity }
-        setCoffeesInCart(state => ([...state, coffeeWithQuantity]))
+        setCoffeesInCart((state) => {
+            const coffeeAlreadyInCart = state.find((coffee) => coffee.id === thisCoffee.id)
+
+            if (coffeeAlreadyInCart) {
+                return state.map((coffee) =>
+                    coffee.id === thisCoffee.id
+                        ? { ...coffee, coffeeQuantity: coffee.coffeeQuantity + coffeeQuantity }
+                        : coffee
+                );
+            } else {
+                return [...state, { ...thisCoffee, coffeeQuantity: coffeeQuantity }]
+            }
+        })
     }
 
     function handleRemoveCoffeeFromCart() {

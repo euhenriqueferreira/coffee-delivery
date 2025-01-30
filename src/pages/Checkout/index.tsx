@@ -15,7 +15,7 @@ const AddressFormValidationSchema = zod.object({
     cep: zod.string().length(8),
     street: zod.string().min(5).max(80),
     houseNumber: zod.string().min(1).max(5),
-    extra: zod.string().nullable(),
+    extra: zod.string().optional(),
     district: zod.string().min(3).max(80),
     city: zod.string().min(5).max(80),
     uf: zod.string().length(2),
@@ -24,7 +24,7 @@ const AddressFormValidationSchema = zod.object({
 type AddressFormValidationType = zod.infer<typeof AddressFormValidationSchema>
 
 export function Checkout() {
-    const { setUserAddressData, paymentMethod } = useContext(CoffeesContext)
+    const { setUserAddressData, paymentMethod, setCoffeesInCart } = useContext(CoffeesContext)
 
     const navigate = useNavigate()
 
@@ -32,13 +32,14 @@ export function Checkout() {
         resolver: zodResolver(AddressFormValidationSchema)
     });
 
-    function handleFormSubmit(data: any) {
+    function handleFormSubmit(data: AddressFormValidationType) {
         const userAdressData: AddressType = data
 
         setUserAddressData(userAdressData)
 
         if (paymentMethod) {
             reset()
+            setCoffeesInCart([])
             navigate('/success')
         }
     }

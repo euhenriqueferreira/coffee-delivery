@@ -1,9 +1,11 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { CoffeeItem } from "../../../../components/CoffeeItem"
 import { CoffeesContext } from "../../../../contexts/CoffeesContext"
 import { CartContainer } from "./styles"
 
 export function CartWrapper() {
+    const [somePriceHasChanged, setSomePriceHasChanged] = useState<boolean>(false)
+
     const { coffeesInCart, formatPrice } = useContext(CoffeesContext)
 
     const sumItemsPrice = coffeesInCart.reduce((sumPrice, coffeeItem) => sumPrice + (coffeeItem.coffeePrice * coffeeItem.coffeeQuantity), 0)
@@ -15,6 +17,7 @@ export function CartWrapper() {
     const orderTotalPrice = sumItemsPrice + deliveryPrice
     const orderTotalPriceFormatted = formatPrice(orderTotalPrice)
 
+
     return (
         <aside>
             <h2>Cafés selecionados</h2>
@@ -23,7 +26,7 @@ export function CartWrapper() {
                     {coffeesInCart.map((coffee) => {
                         return (
                             <>
-                                <CoffeeItem key={coffee.id} coffee={coffee} isItOnShoppingCart />
+                                <CoffeeItem key={coffee.id} coffee={coffee} isItOnShoppingCart somePriceHasChanged={somePriceHasChanged} setSomePriceHasChanged={setSomePriceHasChanged} />
                                 <div className="divisor"></div>
                             </>
                         )

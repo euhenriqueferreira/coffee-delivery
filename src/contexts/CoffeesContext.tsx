@@ -44,7 +44,9 @@ interface CoffeesContextProviderProps {
 }
 
 export function CoffeesContextProvider({ children }: CoffeesContextProviderProps) {
-    const [coffees, setCoffees] = useState<Coffee[]>(CoffeeListData)
+    // const [coffees, setCoffees] = useState<Coffee[]>(CoffeeListData)
+    const coffees: Coffee[] = CoffeeListData
+
     const [coffeesInCart, setCoffeesInCart] = useState<Coffee[]>([])
 
     const [paymentMethod, setPaymentMethod] = useState<string | null>('')

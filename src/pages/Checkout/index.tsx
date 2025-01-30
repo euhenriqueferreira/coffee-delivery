@@ -1,10 +1,48 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { MapPin } from "phosphor-react";
+import { useContext } from "react";
+import { useForm } from 'react-hook-form';
+import { useNavigate } from "react-router-dom";
+import * as zod from 'zod';
+import { AddressType, CoffeesContext } from "../../contexts/CoffeesContext";
 import { CartWrapper } from "./components/CartWrapper";
 import { PaymentForm } from "./components/PaymentForm";
 import { AddressFormContainer, CheckoutContainer } from "./styles";
 
-export function Checkout() {
 
+
+const AddressFormValidationSchema = zod.object({
+    cep: zod.string().length(8),
+    street: zod.string().min(5).max(80),
+    houseNumber: zod.string().min(1).max(5),
+    extra: zod.string().nullable(),
+    district: zod.string().min(3).max(80),
+    city: zod.string().min(5).max(80),
+    uf: zod.string().length(2),
+})
+
+type AddressFormValidationType = zod.infer<typeof AddressFormValidationSchema>
+
+export function Checkout() {
+    const { setUserAddressData, paymentMethod } = useContext(CoffeesContext)
+
+    const navigate = useNavigate()
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<AddressFormValidationType>({
+        resolver: zodResolver(AddressFormValidationSchema)
+    });
+
+    function handleFormSubmit(data: any) {
+        const userAdressData: AddressType = data
+
+        setUserAddressData(userAdressData)
+
+        reset()
+
+        if (paymentMethod) {
+            navigate('/thanks')
+        }
+    }
 
     return (
         <CheckoutContainer>
@@ -19,33 +57,33 @@ export function Checkout() {
                         <p>Informe o endereço onde deseja receber seu pedido</p>
                     </header>
 
-                    <form action="">
+                    <form action="" id="form-adress" onSubmit={handleSubmit(handleFormSubmit)}>
                         <div className="input-wrapper">
-                            <input type="text" name="cep" placeholder="CEP" />
+                            <input type="text" placeholder="CEP" {...register('cep')} className={`${errors.cep ? 'error' : ''}`} />
                         </div>
 
                         <div className="input-wrapper">
-                            <input type="text" name="street" placeholder="Rua" />
+                            <input type="text" placeholder="Rua" {...register('street')} className={`${errors.street ? 'error' : ''}`} />
                         </div>
 
                         <div className="input-wrapper">
-                            <input type="text" name="house-number" placeholder="Number" />
+                            <input type="text" placeholder="Number" {...register('houseNumber')} className={`${errors.houseNumber ? 'error' : ''}`} />
                         </div>
 
                         <div className="input-wrapper">
-                            <input type="text" name="extra" placeholder="Complemento" />
+                            <input type="text" placeholder="Complemento" {...register('extra')} className={`${errors.extra ? 'error' : ''}`} />
                         </div>
 
                         <div className="input-wrapper">
-                            <input type="text" name="district" placeholder="Bairro" />
+                            <input type="text" placeholder="Bairro" {...register('district')} className={`${errors.district ? 'error' : ''}`} />
                         </div>
 
                         <div className="input-wrapper">
-                            <input type="text" name="city" placeholder="Cidade" />
+                            <input type="text" placeholder="Cidade" {...register('city')} className={`${errors.city ? 'error' : ''}`} />
                         </div>
 
                         <div className="input-wrapper">
-                            <input type="text" name="uf" placeholder="UF" />
+                            <input type="text" placeholder="UF" {...register('uf')} className={`${errors.uf ? 'error' : ''}`} />
                         </div>
                     </form>
                 </AddressFormContainer>

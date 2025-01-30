@@ -15,7 +15,6 @@ export function CartWrapper() {
     const orderTotalPrice = sumItemsPrice + deliveryPrice
     const orderTotalPriceFormatted = formatPrice(orderTotalPrice)
 
-
     return (
         <aside>
             <h2>Cafés selecionados</h2>
@@ -45,7 +44,7 @@ export function CartWrapper() {
                         <span>R$ {orderTotalPriceFormatted}</span>
                     </div>
 
-                    <button className="confirm">
+                    <button className="confirm" type="submit" form="form-adress">
                         Confirmar pedido
                     </button>
                 </footer>

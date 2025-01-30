@@ -6,7 +6,11 @@ import { CoffeesContext } from '../../contexts/CoffeesContext';
 import { HeaderContainer } from "./styles";
 
 export function Header() {
-    const { coffeesInCart } = useContext(CoffeesContext)
+    const { coffeesInCart, userAddressData } = useContext(CoffeesContext)
+
+    const userAddressToRender = userAddressData
+        ? (userAddressData.city + ', ' + userAddressData.uf)
+        : 'Indefinido'
 
     return (
         <HeaderContainer>
@@ -17,7 +21,8 @@ export function Header() {
             <nav>
                 <div>
                     <MapPin size={22} weight="fill" />
-                    Porto Alegre, RS
+                    {userAddressToRender}
+                    {/* Porto Alegre, RS */}
                 </div>
 
                 <NavLink to={'/checkout'} className="cart">

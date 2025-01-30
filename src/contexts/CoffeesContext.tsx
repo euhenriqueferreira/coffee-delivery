@@ -16,11 +16,23 @@ export interface Coffee {
     coffeeQuantity: number,
 }
 
+export interface AddressType {
+    cep: string,
+    street: string,
+    houseNumber: string,
+    extra?: string,
+    district: string,
+    city: string,
+    uf: string
+}
+
 interface CoffeesContextType {
     coffees: Coffee[],
     coffeesInCart: Coffee[],
-    paymentMethod: string,
-    setPaymentMethod: Dispatch<React.SetStateAction<string>>
+    paymentMethod: string | null,
+    userAddressData: AddressType | null
+    setUserAddressData: Dispatch<SetStateAction<AddressType | null>>
+    setPaymentMethod: Dispatch<React.SetStateAction<string | null>>
     setCoffeesInCart: Dispatch<SetStateAction<Coffee[]>>,
     formatPrice: (value: number) => string,
 }
@@ -35,7 +47,9 @@ export function CoffeesContextProvider({ children }: CoffeesContextProviderProps
     const [coffees, setCoffees] = useState<Coffee[]>(CoffeeListData)
     const [coffeesInCart, setCoffeesInCart] = useState<Coffee[]>([])
 
-    const [paymentMethod, setPaymentMethod] = useState<string>('')
+    const [paymentMethod, setPaymentMethod] = useState<string | null>('')
+
+    const [userAddressData, setUserAddressData] = useState<AddressType | null>(null)
 
     function formatPrice(value: number): string {
         return value.toFixed(2).replace('.', ',')
@@ -47,6 +61,8 @@ export function CoffeesContextProvider({ children }: CoffeesContextProviderProps
                 coffees,
                 coffeesInCart,
                 paymentMethod,
+                userAddressData,
+                setUserAddressData,
                 setPaymentMethod,
                 setCoffeesInCart,
                 formatPrice

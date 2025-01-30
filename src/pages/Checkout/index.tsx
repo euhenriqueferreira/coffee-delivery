@@ -1,60 +1,58 @@
-import { useContext } from "react";
-import { CoffeeItem } from "../../components/CoffeeItem";
-import { CoffeesContext } from "../../contexts/CoffeesContext";
-import { CartContainer, CheckoutContainer } from "./styles";
+import { MapPin } from "phosphor-react";
+import { CartWrapper } from "./components/CartWrapper";
+import { PaymentForm } from "./components/PaymentForm";
+import { AddressFormContainer, CheckoutContainer } from "./styles";
 
 export function Checkout() {
-    const { coffeesInCart, formatPrice } = useContext(CoffeesContext)
 
-    const sumItemsPrice = coffeesInCart.reduce((sumPrice, coffeeItem) => sumPrice + (coffeeItem.coffeePrice * coffeeItem.coffeeQuantity), 0)
-    const totalItemsPriceFormatted = formatPrice(sumItemsPrice)
-
-    const deliveryPrice = 29.70
-    const deliveryPriceFormatted = formatPrice(deliveryPrice)
-
-    const orderTotalPrice = sumItemsPrice + deliveryPrice
-    const orderTotalPriceFormatted = formatPrice(orderTotalPrice)
 
     return (
         <CheckoutContainer>
             <div>
                 <h2>Complete seu pedido</h2>
+                <AddressFormContainer>
+                    <header>
+                        <h3>
+                            <MapPin size={22} />
+                            Endereço de entrega
+                        </h3>
+                        <p>Informe o endereço onde deseja receber seu pedido</p>
+                    </header>
+
+                    <form action="">
+                        <div className="input-wrapper">
+                            <input type="text" name="cep" placeholder="CEP" />
+                        </div>
+
+                        <div className="input-wrapper">
+                            <input type="text" name="street" placeholder="Rua" />
+                        </div>
+
+                        <div className="input-wrapper">
+                            <input type="text" name="house-number" placeholder="Number" />
+                        </div>
+
+                        <div className="input-wrapper">
+                            <input type="text" name="extra" placeholder="Complemento" />
+                        </div>
+
+                        <div className="input-wrapper">
+                            <input type="text" name="district" placeholder="Bairro" />
+                        </div>
+
+                        <div className="input-wrapper">
+                            <input type="text" name="city" placeholder="Cidade" />
+                        </div>
+
+                        <div className="input-wrapper">
+                            <input type="text" name="uf" placeholder="UF" />
+                        </div>
+                    </form>
+                </AddressFormContainer>
+
+                <PaymentForm />
             </div>
-            <aside>
-                <h2>Cafés selecionados</h2>
-                <CartContainer>
-                    <ul>
-                        {coffeesInCart.map((coffee) => {
-                            return (
-                                <>
-                                    <CoffeeItem key={coffee.id} coffee={coffee} isItOnShoppingCart />
-                                    <div className="divisor"></div>
-                                </>
-                            )
-                        })}
-                    </ul>
-
-                    <footer className="footer">
-                        <div>
-                            <span>Total de itens</span>
-                            <span>R$ {totalItemsPriceFormatted}</span>
-                        </div>
-                        <div>
-                            <span>Entrega</span>
-                            <span>R$ {deliveryPriceFormatted}</span>
-                        </div>
-                        <div>
-                            <span>Total</span>
-                            <span>R$ {orderTotalPriceFormatted}</span>
-                        </div>
-
-                        <button className="confirm">
-                            Confirmar pedido
-                        </button>
-                    </footer>
-                </CartContainer>
-
-            </aside>
+            <CartWrapper />
         </CheckoutContainer>
     )
 }

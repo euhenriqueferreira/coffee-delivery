@@ -5,6 +5,7 @@ export const CoffeeListData = [
         coffeeName: 'Expresso Tradicional',
         coffeeDescription: 'O tradicional café feito com água quente e grãos moídos',
         coffeePrice: 9.90,
+        coffeeQuantity: 1,
         traits: [
             {
                 id: 1,
@@ -18,6 +19,7 @@ export const CoffeeListData = [
         coffeeName: 'Expresso Americano',
         coffeeDescription: 'Expresso diluído, menos intenso que o tradicional',
         coffeePrice: 9.90,
+        coffeeQuantity: 1,
         traits: [
             {
                 id: 1,
@@ -31,6 +33,7 @@ export const CoffeeListData = [
         coffeeName: 'Expresso Cremoso',
         coffeeDescription: 'Café expresso tradicional com espuma cremosa',
         coffeePrice: 9.90,
+        coffeeQuantity: 1,
         traits: [
             {
                 id: 1,
@@ -44,6 +47,7 @@ export const CoffeeListData = [
         coffeeName: 'Expresso Gelado',
         coffeeDescription: 'Bebida preparada com café expresso e cubos de gelo',
         coffeePrice: 9.90,
+        coffeeQuantity: 1,
         traits: [
             {
                 id: 1,
@@ -61,6 +65,7 @@ export const CoffeeListData = [
         coffeeName: 'Café com Leite',
         coffeeDescription: 'Meio a meio de expresso tradicional com leite vaporizado',
         coffeePrice: 9.90,
+        coffeeQuantity: 1,
         traits: [
             {
                 id: 1,
@@ -78,6 +83,7 @@ export const CoffeeListData = [
         coffeeName: 'Latte',
         coffeeDescription: 'Uma dose de café expresso com o dobro de leite e espuma cremosa',
         coffeePrice: 9.90,
+        coffeeQuantity: 1,
         traits: [
             {
                 id: 1,
@@ -95,6 +101,7 @@ export const CoffeeListData = [
         coffeeName: 'Capuccino',
         coffeeDescription: 'Bebida com canela feita de doses iguais de café, leite e espuma',
         coffeePrice: 9.90,
+        coffeeQuantity: 1,
         traits: [
             {
                 id: 1,
@@ -112,6 +119,7 @@ export const CoffeeListData = [
         coffeeName: 'Macchiato',
         coffeeDescription: 'Café expresso misturado com um pouco de leite quente e espuma',
         coffeePrice: 9.90,
+        coffeeQuantity: 1,
         traits: [
             {
                 id: 1,
@@ -129,6 +137,7 @@ export const CoffeeListData = [
         coffeeName: 'Mocaccino',
         coffeeDescription: 'Café expresso com calda de chocolate, pouco leite e espuma',
         coffeePrice: 9.90,
+        coffeeQuantity: 1,
         traits: [
             {
                 id: 1,
@@ -146,6 +155,7 @@ export const CoffeeListData = [
         coffeeName: 'Chocolate Quente',
         coffeeDescription: 'Bebida feita com chocolate dissolvido no leite quente e café',
         coffeePrice: 9.90,
+        coffeeQuantity: 1,
         traits: [
             {
                 id: 1,
@@ -163,6 +173,7 @@ export const CoffeeListData = [
         coffeeName: 'Cubano',
         coffeeDescription: 'Drink gelado de café expresso com rum, creme de leite e hortelã',
         coffeePrice: 9.90,
+        coffeeQuantity: 1,
         traits: [
             {
                 id: 1,
@@ -184,6 +195,7 @@ export const CoffeeListData = [
         coffeeName: 'Havaiano',
         coffeeDescription: 'Bebida adocicada preparada com café e leite de coco',
         coffeePrice: 9.90,
+        coffeeQuantity: 1,
         traits: [
             {
                 id: 1,
@@ -197,6 +209,7 @@ export const CoffeeListData = [
         coffeeName: 'Árabe',
         coffeeDescription: 'Bebida preparada com grãos de café árabe e especiarias',
         coffeePrice: 9.90,
+        coffeeQuantity: 1,
         traits: [
             {
                 id: 1,
@@ -210,6 +223,7 @@ export const CoffeeListData = [
         coffeeName: 'Irlandês',
         coffeeDescription: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
         coffeePrice: 9.90,
+        coffeeQuantity: 1,
         traits: [
             {
                 id: 1,

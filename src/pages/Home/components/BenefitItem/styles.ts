@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BenefitContainer = styled.li<{ highlightColor: string }>`
+export const BenefitContainer = styled.li<{ highlightcolor: string }>`
     list-style: none;
     display: flex;
     align-items: center;
@@ -13,7 +13,7 @@ export const BenefitContainer = styled.li<{ highlightColor: string }>`
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: ${props => props.theme[props.highlightColor]};
+        background-color: ${props => props.theme[props.highlightcolor]};
 
         svg{
             color: ${props => props.theme.white};

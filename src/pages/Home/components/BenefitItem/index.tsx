@@ -10,7 +10,7 @@ interface BenefitItemProps {
 export function BenefitItem({ icon: Icon, highlightColor, text }: BenefitItemProps) {
 
     return (
-        <BenefitContainer highlightColor={highlightColor}>
+        <BenefitContainer highlightcolor={highlightColor}>
             <div>
                 <Icon size={16} weight='fill' />
             </div>

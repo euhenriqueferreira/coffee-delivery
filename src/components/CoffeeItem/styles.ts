@@ -113,6 +113,7 @@ export const CoffeeItemContainer = styled.div`
 
             span{
                 flex: 1;
+                text-align: center;
             }
         }
 
@@ -158,5 +159,115 @@ export const CoffeeItemContainer = styled.div`
         background-color: ${props => props.theme["base-card"]};
         
         border-radius: 6px 36px 6px 36px;
+    }
+`
+
+export const CoffeeItemCart = styled.li`  
+    display: flex;
+    gap: 1.25rem;
+
+    list-style: none;
+    
+    padding: 0.5rem;
+
+    img{
+        width: 4rem;
+        height: 4rem;
+    }
+
+    div{
+        flex: 1;
+
+        header{
+            display: flex;
+            justify-content: space-between;
+
+            margin-bottom: 0.5rem;
+
+            h3{
+                font-size: 1rem;
+                color: ${props => props.theme["base-subtitle"]};
+                font-weight: 400;
+            }
+
+            span{
+                font-size: 1rem;
+                color: ${props => props.theme["base-text"]};
+                font-weight: 700;
+            }
+        }
+
+        footer{
+            display: flex;
+            gap: 0.5rem;
+
+            width: fit-content;
+
+            .counter{
+                display: flex;
+                align-items: center;
+
+                width: 4.5rem;
+                height: 2.25rem;
+
+                border-radius: 6px;
+                padding: 0 0.3rem;
+
+                background-color: ${props => props.theme["base-button"]};
+
+                button{
+                    height: 100%;
+                    width: 33%;
+
+                    cursor: pointer;
+
+                    background-color: transparent;
+                    border: 0;
+
+                    svg{
+                        color: ${props => props.theme.purple};
+                    }
+                }
+
+                span{
+                    flex: 1;
+                    text-align: center;
+                }
+            }
+
+            button.removeItem{
+                display: flex;
+                align-items: center;
+                gap: 0.25rem;
+
+                font-size: 0.75rem;
+                color: ${props => props.theme["base-text"]};
+                background-color: ${props => props.theme["base-button"]};
+
+                border-radius: 6px;
+                border: 0;
+
+                padding: 0.4rem 0.5rem;
+
+                text-transform: uppercase;
+
+                cursor: pointer;
+                
+                transition: .2s;
+
+                svg{
+                    color: ${props => props.theme.purple};
+                }
+
+                &:hover{
+                    background-color: ${props => props.theme["base-hover"]};
+
+                    svg{
+                        color: ${props => props.theme["purple-dark"]};
+                    }
+
+                }
+            }
+        }
     }
 `

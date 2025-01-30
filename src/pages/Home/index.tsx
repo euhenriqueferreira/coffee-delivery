@@ -2,9 +2,9 @@ import { Clock, Coffee, Package, ShoppingCart } from 'phosphor-react';
 import { useContext } from 'react';
 import heroBackground from '../../assets/hero-background.png';
 import heroCoffee from '../../assets/hero-coffee.png';
+import { CoffeeItem } from '../../components/CoffeeItem';
 import { CoffeesContext } from '../../contexts/CoffeesContext';
 import { BenefitItem } from './components/BenefitItem';
-import { CoffeeItem } from './components/CoffeeItem';
 import { CoffeeList, HeroSection, HomeContainer } from "./styles";
 
 export function Home() {

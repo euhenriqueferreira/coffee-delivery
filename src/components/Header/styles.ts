@@ -39,7 +39,7 @@ export const HeaderContainer = styled.header`
         }
     }
 
-    button{
+    a.cart{
         display: flex;
         background: ${props => props.theme["yellow-light"]};
         border-radius: 6px;
